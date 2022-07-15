@@ -13,7 +13,6 @@ const router = Router()
 router.get('/',async (request,response)=>{
   try{
     const products = await getProducts()
-
     response.json(products)
   }catch(error){
     return response.status(500).json({errors:[error]})
@@ -24,7 +23,6 @@ router.get('/:id',async (request,response)=>{
   try{  
     const { id } = request.params
     const product = await getProductById(id)
-
     response.json(product)
 
   } catch(error){

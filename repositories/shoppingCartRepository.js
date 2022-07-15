@@ -5,6 +5,7 @@ const shoppingCarts = DaoFactory.getShoppingCart()
 const getAll = async () => {
   try{
     return await shoppingCarts.getAll()
+    
   }catch(error){
     throw 'There was an error trying to get all shoppingCart'
   }
@@ -18,10 +19,11 @@ const getById = async id =>{
   }
 }
 
-const save = async (shoppingCart,product) =>{
+const save = async (shoppingCart) =>{
   try{
-    return await shoppingCarts.save(shoppingCart.toJSON(),product)
+    return await shoppingCarts.save(shoppingCart.toJSON())
   }catch(error){
+    console.log(error)
     throw 'There was an error trying to save the shoppingCart'
   }
 }

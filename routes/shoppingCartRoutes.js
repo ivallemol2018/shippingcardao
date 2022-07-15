@@ -27,7 +27,7 @@ router.get('/:id/products', async(request,response)=>{
 
 router.post('/',async (request,response)=>{
   try{
-    const shoppingCart = new ShoppingCart(JSON.stringify([]))
+    const shoppingCart = new ShoppingCart()
 
     const shoppingCartResponse = await saveShoppingCart(shoppingCart)
 

@@ -7,8 +7,21 @@ class ShoppingCartDaoMysql extends ContenedorMysql{
     super.setSource('shoppingCart')
   }
 
+  async save(item) {
+
+    const shoppingCart = await super.save({ products: JSON.stringify(item.products) })
+
+    return  { id: shoppingCart[0] }
+
+  }
+
+  async getById(id) {
+    const shoppingCart = await super.getById(id)
+    return shoppingCart[0]
+  }  
+
   async update(shoppingCartID,product){
-    const shoppingCart = await super.getById(shoppingCartID)
+    const shoppingCart = await this.getById(shoppingCartID)
 
     const productArray =  shoppingCart.products;
 
@@ -18,14 +31,14 @@ class ShoppingCartDaoMysql extends ContenedorMysql{
 
     await super.update(shoppingCart)
 
-    const shoppingCartResponse = await super.getById(shoppingCartID)
+    const shoppingCartResponse = await this.getById(shoppingCartID)
 
     return {id: shoppingCartResponse.id, products : shoppingCartResponse.products}
   }
 
   async deleteItem(shoppingCartID,productoID){
 
-    const shoppingCart = await super.getById(shoppingCartID)
+    const shoppingCart = await this.getById(shoppingCartID)
 
     const products =  shoppingCart.products
 
@@ -37,7 +50,7 @@ class ShoppingCartDaoMysql extends ContenedorMysql{
 
     await super.update(shoppingCart)
 
-    const shoppingCartResponse = await super.getById(shoppingCartID)
+    const shoppingCartResponse = await this.getById(shoppingCartID)
 
     return {id: shoppingCartResponse.id, products : shoppingCartResponse.products}
 

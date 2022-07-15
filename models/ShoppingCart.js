@@ -1,6 +1,6 @@
 class ShoppingCart{
-  constructor(products){
-    this.products = products
+  constructor(){
+    this.products = []
   }
 
   set id(id){

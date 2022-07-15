@@ -17,7 +17,7 @@ const getShoppingCartById = async id =>{
       throw new NotFoundError('El shopping Cart no existe')
     }
 
-    return shoppingCart[0]
+    return shoppingCart
   }catch(error){
     throw error
   }
@@ -56,7 +56,7 @@ const deleteShoppingCartById = async id =>{
       throw new NotFoundError('El shopping Cart no existe')
     }
 
-    await deleteById(id)
+    return await deleteById(id)
   }catch(error){
     throw error
   }
